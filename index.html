@@ -68,11 +68,17 @@
       function getFactFetch() {
         let number = numberInput.value;
         if (number != "") {
-          fetch("http://numberapi.com/" + number)
-            .then((res) => res.text())
+          fetch("https://numbersapi.p.rapidapi.com/" + number + "/math", {
+          method: 'GET',
+    headers: {
+    'X-RapidAPI-Key': '3245dd0fb0msh05f26f139d9e74cp1a2e7bjsnd1b19c94a3c0',
+    'X-RapidAPI-Host': 'numbersapi.p.rapidapi.com'
+  }
+  })
+            .then((res) => res.json())
             .then((data) => {
               fact.style.display = "block";
-              factText.innerText = data;
+              factText.innerText = data.text;
             })
             .catch((err) => {
               console.log(err);
